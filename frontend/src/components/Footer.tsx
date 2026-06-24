@@ -15,7 +15,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
-                Harshita Phadtare
+                Kalpesh Pachpute
               </a>
             </span>
           </div>

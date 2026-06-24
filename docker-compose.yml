@@ -1,0 +1,19 @@
+version : "3.9"
+services:
+
+  backend:
+    build: .
+    container_name: gopredict-backend
+    ports:
+     - "8000:8000"
+    volumes:
+     - ./saved_models:/app/saved_models
+     - ./output:/app/output
+
+  frontend:
+    build: ./frontend
+    container_name: gopredict-frontend
+    ports:
+     - "3000:80"
+    depends_on:
+     - backend

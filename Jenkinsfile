@@ -1,42 +1,52 @@
-pipeline{
-    agent any
-    stages{
-        stage('checkout code'){
-            steps{
-                git branch:'main',
-                url:'https://github.com/kalpesh-pachpute/Prediction-application.git'
-            }
-        }
-        stage('verify docker'){
-            steps{
-                bat 'docker --version'
-                bat 'docker compose version'
-            }
-        }
-        stage('build container'){
-            steps{
-                bat 'docker compose build'
-            }
-        }
-        stage('deploy container'){
-            steps{
-                bat 'docker compose down'
-                bat 'docker compose up -d'
-            }
-        }
-        stage('verify deployment'){
-            steps{
-                bat 'docker compose ps'
-            }
-        }
+pipeline {
+agent any
+stages {
 
-    }
-    post{
-        success{
-            echo 'Deployment successful'
-        }
-        failure{
-            echo 'Deployment failed'
+    stage('Checkout Code') {
+        steps {
+            git branch: 'main',
+                url: 'https://github.com/kalpesh-pachpute/Prediction-application.git'
         }
     }
+
+    stage('Verify Docker') {
+        steps {
+            bat 'docker --version'
+            bat 'docker compose version'
+        }
+    }
+
+    stage('Cleanup Existing Containers') {
+        steps {
+            bat 'docker compose down --remove-orphans'
+        }
+    }
+
+    stage('Deploy Application') {
+        steps {
+            bat 'docker compose up -d --build'
+        }
+    }
+
+    stage('Verify Deployment') {
+        steps {
+            bat 'docker compose ps'
+        }
+    }
+}
+
+post {
+    success {
+        echo 'Deployment successful'
+    }
+
+    failure {
+        echo 'Deployment failed'
+    }
+
+    always {
+        bat 'docker compose ps'
+    }
+}
+
 }

@@ -2,12 +2,6 @@
 
 A comprehensive machine learning pipeline for predicting trip durations using various regression models, feature engineering, and hyperparameter optimization.
 
-**Medium post**: https://medium.com/@hphadtare02/how-machine-learning-predicts-trip-duration-just-like-uber-zomato-91f7db6e9ce9
-
-## Demo
-
-https://github.com/user-attachments/assets/f3e1078a-28d6-44e3-a69a-db3a73587c80
-
 ## Project Structure
 
 ```

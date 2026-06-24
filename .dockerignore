@@ -7,3 +7,17 @@ venv
 logs
 output
 saved_models
+.git
+.gitignore
+
+venv
+__pycache__
+
+notebooks
+data
+
+saved_models
+logs
+output
+
+*.ipynb

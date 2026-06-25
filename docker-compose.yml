@@ -5,6 +5,7 @@ services:
     build: .
     ports:
      - "8000:8000"
+    container_name: front-gopredict
     volumes:
      - ./saved_models:/app/saved_models
      - ./output:/app/output
@@ -13,5 +14,6 @@ services:
     build: ./frontend
     ports:
      - "3000:80"
+    container_name: back-gopredict 
     depends_on:
      - backend
